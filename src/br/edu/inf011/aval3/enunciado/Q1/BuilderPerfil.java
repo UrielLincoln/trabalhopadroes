@@ -1,4 +1,4 @@
-package br.edu.inf011.aval3.enunciado.main;
+package br.edu.inf011.aval3.enunciado.Q1;
 
 import java.util.Iterator;
 import java.util.List;
@@ -35,18 +35,19 @@ public class BuilderPerfil {
 		return this;
 	}
 	
-	public BuilderPerfil documento(Documento documento) {
+	public BuilderPerfil documento(Documento documento) throws QuantidadeExcedida {
 		if(documentos.size()<6)
 			this.documentos.add(documento);
 	 else {
-        throw new IllegalStateException("Limite máximo de documentos excedido.");
+        throw new QuantidadeExcedida("Limite máximo de documentos excedido.");
     }
 		return this;
 	}
 	
 	
 	
-	public Perfil construir() {
+	public Perfil construir() throws QuantidadeExcedida {
+		verificarquantidade();
 		if(this.pwd==null)
 			this.pwd=this.nome;
 		if(this.user==null)
@@ -58,7 +59,7 @@ public class BuilderPerfil {
 	
 	
 	//Verifica a quantidade de documentos para a criação da classe
-	public void verificarquantidade() {
+	public void verificarquantidade() throws QuantidadeExcedida {
 		int cc =0;
 		int cpf =0;
 		int rg =0;
@@ -77,19 +78,21 @@ public class BuilderPerfil {
 				rg++;
 		}
 		
-		
-		
-		
-	
-		
+		if (cpf > 1) {throw new QuantidadeExcedida("A quantidade de CPFs excedeu o limite permitido.");}
+        if (cc > 2) {throw new QuantidadeExcedida("A quantidade de Cartões de Crédito excedeu o limite permitido.");}
+        if (rg > 1) {throw new QuantidadeExcedida("A quantidade de RGs excedeu o limite permitido.");}
+        if (email > 2) {throw new QuantidadeExcedida("A quantidade de E-mails excedeu o limite permitido.");}
 		
 	}
 	
 	
 	
 	
-	
-	
+	public static class QuantidadeExcedida extends Exception {
+	    public QuantidadeExcedida(String mensagem) {
+	        super(mensagem);
+	    }
+	}
 	
 	
 	public List<Documento> getDocumentos() {

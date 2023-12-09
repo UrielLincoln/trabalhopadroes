@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import br.edu.inf011.aval3.enunciado.main.BuilderPerfil;
+import br.edu.inf011.aval3.enunciado.Q1.BuilderPerfil;
 
 
 //Questao 1: Modificação feita para adicionar o builder no constructor
