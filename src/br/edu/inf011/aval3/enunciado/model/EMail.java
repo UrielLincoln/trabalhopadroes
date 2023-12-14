@@ -2,6 +2,8 @@ package br.edu.inf011.aval3.enunciado.model;
 
 import java.util.regex.Pattern;
 
+import br.edu.inf011.aval3.enunciado.Q2.DocumentoVisitor;
+
 public class EMail implements Documento{
 	
 	public static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"; 
@@ -37,6 +39,13 @@ public class EMail implements Documento{
 
 	public String getConta() {
 		return conta;
+	}
+
+	@Override
+	public void accept(DocumentoVisitor visitor) {
+		visitor.visit(this);
+		
+		
 	}
 	
 	

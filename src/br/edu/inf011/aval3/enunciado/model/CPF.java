@@ -1,5 +1,7 @@
 package br.edu.inf011.aval3.enunciado.model;
 
+import br.edu.inf011.aval3.enunciado.Q2.DocumentoVisitor;
+
 public class CPF implements Documento{
 	
 	public String nome;
@@ -85,6 +87,13 @@ public class CPF implements Documento{
 
 	public String getNumero() {
 		return numero;
+	}
+
+
+	@Override
+	public void accept(DocumentoVisitor visitor) {
+		visitor.visit(this);
+		
 	}
 	
 	
